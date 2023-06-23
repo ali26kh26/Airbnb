@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { Listing, User } from "@prisma/client";
 import { IconType } from "react-icons";
 
 export type safeUser = Omit<
@@ -8,6 +8,10 @@ export type safeUser = Omit<
   createdAt: string;
   updatedAt: string;
   emailVerified: string | null;
+};
+
+export type safeListing = Omit<Listing, "createdAt"> & {
+  createdAt: string;
 };
 
 export type category = {
