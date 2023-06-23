@@ -7,6 +7,7 @@ import MenuItem from "./MenuItem";
 import useLoginModal from "../hooks/useLoginMdal";
 import { signOut } from "next-auth/react";
 import { safeUser } from "@/app/types";
+import useRentModal from "../hooks/useRentModal";
 
 interface Props {
   currentUser?: safeUser | null;
@@ -21,10 +22,21 @@ const UserMenu: React.FC<Props> = ({ currentUser }) => {
     setIsOpen((value) => !value);
   }, []);
 
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      loginModal.onOpen();
+      return;
+    }
+    rentModal.onOpen();
+  }, [loginModal, rentModal, currentUser]);
+
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
-        <div className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer">
+        <div
+          onClick={onRent}
+          className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
+        >
           Airbnb your home
         </div>
         <div
