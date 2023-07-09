@@ -6,8 +6,7 @@ import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingResevation from "@/app/components/listings/ListingReservation";
 import { categories } from "@/app/components/navbar/Categories";
 import Container from "@/app/components/shared/Container";
-import { safeListing, safeUser } from "@/app/types";
-import { Reservation } from "@prisma/client";
+import { safeListing, safeReservation, safeUser } from "@/app/types";
 import axios from "axios";
 import { differenceInCalendarDays } from "date-fns";
 import { eachDayOfInterval } from "date-fns/esm";
@@ -27,7 +26,7 @@ interface props {
     user: safeUser;
   };
   currentUser?: safeUser | null;
-  reservations?: Reservation[];
+  reservations?: safeReservation[];
 }
 
 const ListingClient: React.FC<props> = ({
